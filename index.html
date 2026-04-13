@@ -8,20 +8,21 @@
     <style>
         :root { --azul-ing: #003366; }
         .navbar { background-color: var(--azul-ing) !important; }
-        .hero { background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1000'); background-size: cover; color: white; padding: 100px 0; }
-        .btn-ing { background-color: var(--azul-ing); color: white; border-radius: 0; }
-        .btn-ing:hover { background-color: #002244; color: white; }
-        .footer { background-color: #f8f9fa; padding: 40px 0; border-top: 5px solid var(--azul-ing); }
+        .hero { 
+            background: linear-gradient(rgba(0,51,102,0.7), rgba(0,51,102,0.7)), 
+                        url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1000'); 
+            background-size: cover; 
+            background-position: center;
+            color: white; 
+            padding: 80px 0; 
+        }
     </style>
 </head>
-<body>
+<body class="bg-light">
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">BME - Ing. Química</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
@@ -36,4 +37,33 @@
 
     <header class="hero text-center">
         <div class="container">
-            <h1 class="display-3 fw-bold">Balances de
+            <h1 class="display-4 fw-bold">Balances de Materia y Energía</h1>
+            <p class="lead">Modelado, Simulación y Optimización de Procesos Industriales</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-md-8 bg-white p-4 rounded shadow-sm">
+                <h2 class="mb-4">Sobre la Cátedra</h2>
+                <p>Nuestra cátedra se centra en la aplicación de los principios fundamentales de conservación de masa y energía para la resolución de problemas en la industria de procesos químicos.</p>
+                <p>Ofrecemos una sólida formación académica combinada con investigación aplicada en el área de optimización matemática.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="list-group shadow-sm">
+                    <div class="list-group-item bg-dark text-white fw-bold">Accesos Rápidos</div>
+                    <a href="alumnos.html" class="list-group-item list-group-item-action">📅 Cronograma de Cursada</a>
+                    <a href="herramientas.html" class="list-group-item list-group-item-action text-primary">🧮 Calculadora de Sistemas</a>
+                    <a href="servicios.html" class="list-group-item list-group-item-action text-success">💼 Consultoría Industrial</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-4 text-muted border-top bg-white">
+        <p>Cátedra BME - © 2024</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
