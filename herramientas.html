@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas de Cálculo - BME</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <style>
+        :root { --azul-ing: #003366; }
+        .navbar { background-color: var(--azul-ing) !important; }
+        .card-tool { border-radius: 15px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .result-box { background: #212529; color: #39ff14; font-family: 'Courier New', Courier, monospace; padding: 15px; border-radius: 8px; min-height: 80px; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">BME - Ing. Química</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="equipo.html">Equipo Docente</a></li>
+                    <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="alumnos.html">Alumnos</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold" href="herramientas.html">Herramientas</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-5 fw-bold">Laboratorio Virtual de Cálculo</h2>
+
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="card card-tool p-4">
+                    <h4 class="fw-bold mb-3 text-primary">🧮 Solver de Balances ($Ax = B$)</h4>
+                    <p class="text-muted small">Resuelva sistemas de ecuaciones lineales para balances de masa multiespecie.</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Matriz A (filas separadas por comas):</label>
+                        <input type="text" id="inputA" class="form-control" placeholder="1 1, 1 -1">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Vector B (resultados):</label>
+                        <input type="text" id="inputB" class="form-control" placeholder="10, 2">
+                    </div>
+                    <button onclick="resolverSistema()" class="btn btn-primary w-100 fw-bold mb-3">Resolver con Math.js</button>
+                    
+                    <div id="resultadoAxB" class="result-box text-break">
+                        > Esperando datos...
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card card-tool p-4">
+                    <h4 class="fw-bold mb-3 text-danger">🔥 Propiedades del Vapor</h4>
+                    <p class="text-muted small">Cálculo de entalpía y entropía (Demo lógica Python).</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Presión [bar]:</label>
+                        <input type="number" id="press" class="form-control" placeholder="1.0">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Temperatura [°C]:</label>
+                        <input type="number" id="temp" class="form-control" placeholder="100">
+                    </div>
+                    <button py-click="calc_steam()" id="btn-steam" class="btn btn-danger w-100 fw-bold mb-3">
+                        Calcular Propiedades (Python)
+                    </button>
+                    
+                    <div id="out_steam" class="result-box">
+                        > Python cargando...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function resolverSistema() {
+            try {
+                const aVal = document.getElementById('inputA').value;
+                const bVal = document.getElementById('inputB').value;
+                
+                // Formatear A: de "1 1, 1 -1" a [[1,1],[1,-1]]
+                const A = aVal.split(',').map(row => row.trim().split(/\s+/).map(Number));
+                // Formatear B: de "10, 2" a [10, 2]
+                const B = bVal.split(',').map(Number);
+                
+                const x = math.lusolve(A, B);
+                const flatX = [].concat(...x); // Aplana el resultado
+                
+                let resTxt = "SOLUCIÓN:<br>";
+                flatX.forEach((val, i) => {
+                    resTxt += `x${i+1} = ${val.toFixed(4)}<br>`;
+                });
+                document.getElementById('resultadoAxB').innerHTML = resTxt;
+            } catch (err) {
+                document.getElementById('resultadoAxB').innerHTML = "ERROR: Revise el formato (ej: 1 1, 1 -1)";
+            }
+        }
+    </script>
+
+    <py-script>
+def calc_steam():
+    try:
+        p = float(Element("press").value)
+        t = float(Element("temp").value)
+        
+        # Aquí podrías integrar la lógica de XSteam. 
+        # Por ahora, una aproximación de ejemplo:
+        h = 2501 + 1.8 * t # Aproximación simple para vapor
+        
+        res = f"RESULTADOS ESTIMADOS:\nPresión: {p} bar\nTemp: {t} °C\nEntalpía aprox: {h:.2f} kJ/kg"
+        Element("out_steam").write(res)
+    except:
+        Element("out_steam").write("Error en los datos de entrada")
+    </py-script>
+
+</body>
+</html>
