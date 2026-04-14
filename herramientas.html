@@ -114,27 +114,45 @@
 
         // Función para Termodinámica (JavaScript Puro)
         function calcularVapor() {
-            const P = parseFloat(document.getElementById('p_val').value);
-            const T = parseFloat(document.getElementById('t_val').value);
+    const P = parseFloat(document.getElementById('p_val').value);
+    const T = parseFloat(document.getElementById('t_val').value);
 
-            if (isNaN(P) || isNaN(T)) {
-                document.getElementById('outVapor').innerText = "Error: Ingrese valores numéricos.";
-                return;
-            }
+    // Parámetros de Antoine para el Agua (rango 1 a 100°C aprox)
+    // log10(P[mmHg]) = A - (B / (T[°C] + C))
+    const A = 8.07131;
+    const B = 1730.63;
+    const C = 233.426;
 
-            // Lógica de cálculo (fórmulas de la cátedra)
-            // Ejemplo de cálculo de entalpía para vapor de agua (aproximación)
-            const h_vap = (2501 + (1.82 * T)).toFixed(2);
-            const h_liq = (4.18 * T).toFixed(2);
+    // Calculamos la Presión de Saturación teórica para la T ingresada
+    const pSat_mmHg = Math.pow(10, A - (B / (T + C)));
+    const pSat_bar = pSat_mmHg / 750.062; // Conversión de mmHg a bar
 
-            let res = "REPORTE TERMODINÁMICO:\n====================\n";
-            res += `P: ${P} bar | T: ${T} °C\n\n`;
-            res += `H (Vapor est.): ${h_vap} kJ/kg\n`;
-            res += `H (Líq. est.):  ${h_liq} kJ/kg\n`;
-            res += `\nEstado: Basado en cálculos de regresión lineal.`;
+    let res = "REPORTE TERMODINÁMICO (Agua):\n============================\n";
+    
+    // Verificamos si estamos cerca de la saturación
+    // Si la diferencia entre P ingresada y Psat es pequeña (< 5%)
+    if (Math.abs(P - pSat_bar) / pSat_bar < 0.05) {
+        res += "ESTADO: Mezcla Líquido-Vapor (Saturación)\n";
+        res += `T saturación para ${P.toFixed(3)} bar: ${T.toFixed(2)} °C\n`;
+        res += `P saturación para ${T.toFixed(2)} °C: ${pSat_bar.toFixed(3)} bar\n\n`;
+        
+        // Entalpías de saturación estimadas
+        const hf = (4.18 * T).toFixed(2); // Líquido saturado
+        const hg = (2501 + 1.82 * T).toFixed(2); // Vapor saturado
+        
+        res += `h_f (líquido sat.): ${hf} kJ/kg\n`;
+        res += `h_g (vapor sat.):   ${hg} kJ/kg\n`;
+        res += `h_fg (evaporación): ${(hg - hf).toFixed(2)} kJ/kg\n`;
+    } else if (P > pSat_bar) {
+        res += "ESTADO: Líquido Subenfriado\n";
+        res += `h: ${(4.18 * T).toFixed(2)} kJ/kg (aprox. como líq. sat a T)\n`;
+    } else {
+        res += "ESTADO: Vapor Sobrecalentado\n";
+        res += `h: ${(2501 + 1.82 * T).toFixed(2)} kJ/kg\n`;
+    }
 
-            document.getElementById('outVapor').innerText = res;
-        }
+    document.getElementById('outVapor').innerText = res;
+}
     </script>
 
     <footer class="text-center py-4 text-muted border-top mt-5 bg-white">
