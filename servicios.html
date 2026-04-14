@@ -6,12 +6,13 @@
     <title>Servicios Tecnológicos - Cátedra BME</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        :root { --azul-ing: #003366; --verde-service: #28a745; }
+        :root { --azul-ing: #003366; --verde-service: #28a745; --celeste-claro: #f0f7ff; }
         .navbar { background-color: var(--azul-ing) !important; }
         .service-header { background: #e9ecef; padding: 60px 0; border-bottom: 4px solid var(--verde-service); }
-        .card-service { border: none; transition: all 0.3s; border-radius: 12px; }
+        .card-service { border: none; transition: all 0.3s; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .card-service:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
         .icon-circle { width: 60px; height: 60px; background: var(--azul-ing); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.5rem; }
+        .bg-especial { background-color: var(--celeste-claro); border: 1px solid #d1e3f8; }
         .contact-cta { background: var(--azul-ing); color: white; padding: 40px; border-radius: 15px; }
     </style>
 </head>
@@ -35,47 +36,62 @@
     <header class="service-header text-center">
         <div class="container">
             <h1 class="display-4 fw-bold">Servicios y Vinculación Tecnológica</h1>
-            <p class="lead text-muted">Soluciones avanzadas en ingeniería de procesos para la industria y el sector energético.</p>
+            <p class="lead text-muted">Investigación aplicada y soluciones de software para la ingeniería de procesos.</p>
         </div>
     </header>
 
     <div class="container my-5">
         <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 p-4 card-service">
-                    <div class="icon-circle">📈</div>
-                    <h4 class="fw-bold">Optimización de Procesos</h4>
-                    <p class="text-muted">Aplicación de programación matemática para la reducción de costos operativos, maximización de rendimientos y eficiencia energética en plantas complejas.</p>
-                    <ul class="small text-secondary">
-                        <li>Optimización de redes de intercambio calórico.</li>
-                        <li>Reducción de consumo de servicios auxiliares.</li>
-                        <li>Planificación óptima de la producción.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card h-100 p-4 card-service">
                     <div class="icon-circle">💻</div>
                     <h4 class="fw-bold">Modelado y Simulación</h4>
                     <p class="text-muted">Desarrollo de modelos matemáticos y "gemelos digitales" para predecir el comportamiento de sistemas químicos ante cambios de variables.</p>
                     <ul class="small text-secondary">
                         <li>Simulación dinámica y estacionaria.</li>
-                        <li>Análisis de sensibilidad de procesos.</li>
-                        <li>Validación de datos industriales mediante balances.</li>
+                        <li>Análisis de sensibilidad de procesos industriales.</li>
+                        <li>Validación de datos mediante balances de masa y energía.</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card h-100 p-4 card-service">
-                    <div class="icon-circle">⚗️</div>
-                    <h4 class="fw-bold">Operaciones Unitarias</h4>
-                    <p class="text-muted">Asesoramiento técnico en el diseño, evaluación y diagnóstico de equipos de transferencia de masa y energía.</p>
+                    <div class="icon-circle">📈</div>
+                    <h4 class="fw-bold">Optimización de Procesos</h4>
+                    <p class="text-muted">Aplicación de programación matemática para la reducción de costos operativos, maximización de rendimientos y eficiencia energética.</p>
                     <ul class="small text-secondary">
-                        <li>Cálculo de columnas de destilación y absorción.</li>
-                        <li>Diseño de intercambiadores de calor.</li>
-                        <li>Evaluación de reactores químicos.</li>
+                        <li>Optimización de redes de intercambio calórico (Pinch).</li>
+                        <li>Reducción de consumo de servicios auxiliares.</li>
+                        <li>Planificación óptima (Scheduling) de la producción.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100 p-4 card-service bg-especial">
+                    <div class="icon-circle">♻️</div>
+                    <h4 class="fw-bold">Grupo Cyklos FACET</h4>
+                    <p class="text-muted">Espacio de investigación donde participan 3 de los 4 docentes de la cátedra, enfocado en la sustentabilidad y el análisis de ciclo de vida.</p>
+                    <p class="small"><em>[Aquí puedes agregar la descripción personalizada del grupo]</em></p>
+                    <ul class="small text-secondary">
+                        <li>Ítem 1: [Descripción de actividad o servicio]</li>
+                        <li>Ítem 2: [Descripción de actividad o servicio]</li>
+                        <li>Ítem 3: [Descripción de actividad o servicio]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100 p-4 card-service bg-especial">
+                    <div class="icon-circle">🌐</div>
+                    <h4 class="fw-bold">EMETRIX</h4>
+                    <p class="text-muted">Aplicativo web de vanguardia cofundado por el Docente 1 en colaboración con especialistas externos a la unidad académica.</p>
+                    <p class="small">Esta herramienta permite la gestión de indicadores métricos y optimización en tiempo real para sectores industriales específicos.</p>
+                    <ul class="small text-secondary">
+                        <li>Ítem 1: [Característica o solución de Emetrix]</li>
+                        <li>Ítem 2: [Característica o solución de Emetrix]</li>
+                        <li>Ítem 3: [Característica o solución de Emetrix]</li>
                     </ul>
                 </div>
             </div>
@@ -84,16 +100,16 @@
         <div class="row mt-5">
             <div class="col-12">
                 <div class="contact-cta text-center">
-                    <h2 class="fw-bold mb-3">¿Busca optimizar su planta?</h2>
-                    <p class="mb-4">Nuestro equipo docente está disponible para consultorías técnicas, proyectos de I+D y capacitación in-company bajo convenios institucionales.</p>
-                    <a href="mailto:tu-email@universidad.edu.ar" class="btn btn-light btn-lg fw-bold px-5">Contactar con la Cátedra</a>
+                    <h2 class="fw-bold mb-3">¿Busca vinculación técnica?</h2>
+                    <p class="mb-4">Para consultorías a través del Grupo Cyklos o implementación de soluciones Emetrix, contáctenos para coordinar una reunión técnica.</p>
+                    <a href="mailto:tu-email@universidad.edu.ar" class="btn btn-light btn-lg fw-bold px-5">Contactar con el Equipo</a>
                 </div>
             </div>
         </div>
     </div>
 
     <footer class="text-center py-4 bg-white border-top">
-        <p class="text-muted mb-0">Cátedra BME - Transferencia Tecnológica © 2024</p>
+        <p class="text-muted mb-0">Cátedra BME - Transferencia y Vinculación © 2024</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
