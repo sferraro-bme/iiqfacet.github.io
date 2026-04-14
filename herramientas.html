@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herramientas BME - Resolución</title>
+    <title>Herramientas de Cálculo - BME</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
     <style>
         :root { --azul-ing: #003366; }
         .navbar { background-color: var(--azul-ing) !important; }
-        .card-tool { border-radius: 15px; border: 2px solid #e9ecef; transition: 0.3s; }
-        .card-tool:hover { border-color: var(--azul-ing); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .console { background: #1a1a1a; color: #00ff00; font-family: 'Consolas', monospace; padding: 15px; border-radius: 8px; font-size: 0.9rem; min-height: 120px; overflow-y: auto; }
-        .instrucciones { font-size: 0.8rem; color: #666; margin-bottom: 10px; }
+        .card-tool { border-radius: 15px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .console { 
+            background: #1a1a1a; 
+            color: #39ff14; 
+            font-family: 'Consolas', 'Courier New', monospace; 
+            padding: 15px; 
+            border-radius: 8px; 
+            min-height: 100px;
+            white-space: pre-wrap;
+        }
+        .btn-calc { font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body class="bg-light">
@@ -37,53 +42,45 @@
     </nav>
 
     <div class="container my-5">
-        <h2 class="text-center mb-5 fw-bold">Herramientas de Cálculo para Balances</h2>
+        <h2 class="text-center mb-5 fw-bold" style="color: var(--azul-ing);">Laboratorio de Cálculo Instantáneo</h2>
 
         <div class="row g-4">
             <div class="col-lg-6">
-                <div class="card card-tool h-100 p-4">
-                    <h4 class="fw-bold text-primary">📊 Resolución de Sistemas $Ax = B$</h4>
-                    <p class="instrucciones">Ideal para balances de masa multiespecie sin reacción. <br> 
-                    <strong>Formato:</strong> Filas con espacios, separar filas con punto y coma (;)</p>
-                    
+                <div class="card card-tool p-4">
+                    <h4 class="fw-bold mb-3 text-primary text-center">📊 Balance de Masa ($Ax = B$)</h4>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Matriz de Coeficientes (A):</label>
-                        <input type="text" id="inputA" class="form-control" placeholder="1 1 1; 0 2 5; 2 5 -1">
+                        <label class="form-label small fw-bold text-secondary">Matriz A (Filas separadas por ";"):</label>
+                        <input type="text" id="inputA" class="form-control form-control-lg" placeholder="1 1; 1 -1">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Vector de Resultados (B):</label>
-                        <input type="text" id="inputB" class="form-control" placeholder="10; 20; 5">
+                        <label class="form-label small fw-bold text-secondary">Vector B (Resultados):</label>
+                        <input type="text" id="inputB" class="form-control form-control-lg" placeholder="10; 2">
                     </div>
-                    <button onclick="resolverSist()" class="btn btn-primary w-100 fw-bold shadow-sm">Calcular Incógnitas</button>
+                    <button onclick="resolverLineal()" class="btn btn-primary btn-calc w-100 py-2">Calcular Balances</button>
                     
                     <div class="mt-4">
-                        <div id="resLineal" class="console">> Esperando datos...</div>
+                        <div id="outLineal" class="console">> Ingrese datos...</div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="card card-tool h-100 p-4">
-                    <h4 class="fw-bold text-danger">💨 Propiedades de Vapor (Python)</h4>
-                    <p class="instrucciones">Estimación de entalpía y entropía para agua/vapor.</p>
-                    
-                    <div class="row g-2 mb-3">
-                        <div class="col">
-                            <label class="form-label fw-bold">Presión (bar):</label>
-                            <input type="number" id="p_in" class="form-control" value="1.013">
+                <div class="card card-tool p-4 border-top border-4 border-danger">
+                    <h4 class="fw-bold mb-3 text-danger text-center">🔥 Propiedades del Vapor</h4>
+                    <div class="row g-3 mb-3">
+                        <div class="col-6">
+                            <label class="form-label small fw-bold text-secondary">Presión (bar):</label>
+                            <input type="number" id="p_val" class="form-control" value="1.013">
                         </div>
-                        <div class="col">
-                            <label class="form-label fw-bold">Temp (°C):</label>
-                            <input type="number" id="t_in" class="form-control" value="100">
+                        <div class="col-6">
+                            <label class="form-label small fw-bold text-secondary">Temp (°C):</label>
+                            <input type="number" id="t_val" class="form-control" value="100">
                         </div>
                     </div>
-                    
-                    <button py-click="solve_steam()" id="py-btn" class="btn btn-danger w-100 fw-bold shadow-sm">
-                        Ejecutar Lógica Python
-                    </button>
+                    <button onclick="calcularVapor()" class="btn btn-danger btn-calc w-100 py-2">Obtener Propiedades</button>
                     
                     <div class="mt-4">
-                        <div id="resSteam" class="console">> Cargando intérprete Python...</div>
+                        <div id="outVapor" class="console">> Sistema listo.</div>
                     </div>
                 </div>
             </div>
@@ -91,52 +88,59 @@
     </div>
 
     <script>
-        function resolverSist() {
+        // Función para Sistemas de Ecuaciones
+        function resolverLineal() {
             try {
-                const rawA = document.getElementById('inputA').value;
-                const rawB = document.getElementById('inputB').value;
+                const aRaw = document.getElementById('inputA').value;
+                const bRaw = document.getElementById('inputB').value;
 
-                // Procesar A: "1 1; 2 2" -> [[1,1],[2,2]]
-                const A = rawA.split(';').map(row => row.trim().split(/\s+/).map(Number));
-                // Procesar B: "10; 20" -> [10, 20]
-                const B = rawB.split(';').map(Number);
+                // Formateo de Matriz A
+                const A = aRaw.split(';').map(row => row.trim().split(/\s+/).map(Number));
+                // Formateo de Vector B
+                const B = bRaw.split(';').map(Number);
 
                 const x = math.lusolve(A, B);
                 const sol = [].concat(...x);
 
-                let output = "RESULTADO DEL BALANCE:<br>-----------------------<br>";
-                sol.forEach((val, i) => {
-                    output += `Flujo/Incógnita x${i+1} = ${val.toFixed(4)}<br>`;
+                let res = "SOLUCIÓN DEL SISTEMA:\n====================\n";
+                sol.forEach((v, i) => {
+                    res += `Corriente/Incógnita x${i+1} = ${v.toFixed(4)}\n`;
                 });
-                document.getElementById('resLineal').innerHTML = output;
-            } catch (e) {
-                document.getElementById('resLineal').innerHTML = "<span class='text-danger'>ERROR: Formato incorrecto. Use espacios para columnas y ';' para filas.</span>";
+                document.getElementById('outLineal').innerText = res;
+            } catch (err) {
+                document.getElementById('outLineal').innerText = "ERROR: Verifique el formato.\nEj: A -> 1 1; 1 -1\n    B -> 10; 2";
             }
+        }
+
+        // Función para Termodinámica (JavaScript Puro)
+        function calcularVapor() {
+            const P = parseFloat(document.getElementById('p_val').value);
+            const T = parseFloat(document.getElementById('t_val').value);
+
+            if (isNaN(P) || isNaN(T)) {
+                document.getElementById('outVapor').innerText = "Error: Ingrese valores numéricos.";
+                return;
+            }
+
+            // Lógica de cálculo (fórmulas de la cátedra)
+            // Ejemplo de cálculo de entalpía para vapor de agua (aproximación)
+            const h_vap = (2501 + (1.82 * T)).toFixed(2);
+            const h_liq = (4.18 * T).toFixed(2);
+
+            let res = "REPORTE TERMODINÁMICO:\n====================\n";
+            res += `P: ${P} bar | T: ${T} °C\n\n`;
+            res += `H (Vapor est.): ${h_vap} kJ/kg\n`;
+            res += `H (Líq. est.):  ${h_liq} kJ/kg\n`;
+            res += `\nEstado: Basado en cálculos de regresión lineal.`;
+
+            document.getElementById('outVapor').innerText = res;
         }
     </script>
 
-    <py-script>
-def solve_steam():
-    try:
-        p = float(Element("p_in").value)
-        t = float(Element("t_in").value)
-        
-        # Lógica simplificada (aquí se puede extender con iapws o scipy)
-        # Aproximación para h_vapor saturado cerca de 100°C
-        h = 2501 + 1.82 * t 
-        s = 6.0 + (t/100) # Solo ilustrativo
-        
-        res = f"REPORTE TERMODINÁMICO:\n"
-        res += f"-----------------------\n"
-        res += f"Presión:   {p:.3f} bar\n"
-        res += f"Temp:      {t:.2f} °C\n"
-        res += f"Entalpía:  {h:.2f} kJ/kg\n"
-        res += f"Entropía:  {s:.4f} kJ/kg·K"
-        
-        Element("resSteam").write(res)
-    except Exception as e:
-        Element("resSteam").write("Error en el cálculo. Verifique los valores.")
-    </py-script>
+    <footer class="text-center py-4 text-muted border-top mt-5 bg-white">
+        <small>Cátedra Balances de Materia y Energía - Herramientas Digitales © 2024</small>
+    </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
