@@ -18,18 +18,18 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
             border-color: var(--azul-ing);
         }
-        .badge-linea { 
-            background-color: #f1f3f5; 
-            color: #495057; 
-            font-weight: 500; 
-            border: 1px solid #dee2e6;
-        }
         .tesis-box { 
             font-size: 0.85rem; 
             color: #555; 
             border-left: 3px solid var(--azul-ing); 
             padding-left: 12px; 
             background-color: #fcfcfc;
+        }
+        .seccion-titulo {
+            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            color: var(--azul-ing);
         }
         footer { border-top: 1px solid #dee2e6; padding: 25px 0; margin-top: 50px; background: white; }
     </style>
@@ -53,105 +53,128 @@
 
     <div class="container my-5">
         <div class="text-center mb-5">
-            <h1 class="fw-bold" style="color: var(--azul-ing);">Cuerpo Docente</h1>
-            <p class="text-muted">Investigadores y Especialistas en Ingeniería de Procesos</p>
+            <h1 class="fw-bold" style="color: var(--azul-ing);">Equipo de Trabajo</h1>
+            <p class="text-muted">Cuerpo docente y auxiliares de la cátedra</p>
         </div>
 
+        <h3 class="seccion-titulo fw-bold">Docentes</h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 docente-card p-3">
+                    <div class="text-center mb-3">
+                        <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 70px; height: 70px; font-size: 1.2rem;">👤</div>
+                        <h6 class="fw-bold mt-3 mb-0">Docente 1</h6>
+                        <div class="text-primary small fw-bold">Profesor Titular</div>
+                        <div class="text-muted small">Dedicación Exclusiva</div>
+                    </div>
+                    <div class="border-top pt-2">
+                        <small class="fw-bold text-uppercase text-secondary" style="font-size: 0.7rem;">Titulaciones:</small>
+                        <ul class="ps-3 mb-2" style="font-size: 0.85rem;">
+                            <li>Ing. Químico</li>
+                            <li>Dr. en Ingeniería</li>
+                        </ul>
+                        <div class="tesis-box">
+                            <small class="fw-bold text-uppercase mb-0" style="font-size: 0.7rem;">Tesis:</small>
+                            <p class="mb-0 small italic">"Título de la tesis de posgrado..."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 docente-card p-3">
+                    <div class="text-center mb-3">
+                        <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 70px; height: 70px; font-size: 1.2rem;">👤</div>
+                        <h6 class="fw-bold mt-3 mb-0">Docente 2</h6>
+                        <div class="text-primary small fw-bold">Jefe de Trabajos Prácticos</div>
+                        <div class="text-muted small">Dedicación Semiexclusiva</div>
+                    </div>
+                    <div class="border-top pt-2">
+                        <small class="fw-bold text-uppercase text-secondary" style="font-size: 0.7rem;">Titulaciones:</small>
+                        <ul class="ps-3 mb-2" style="font-size: 0.85rem;">
+                            <li>Ing. Químico</li>
+                            <li>Magíster en Procesos</li>
+                        </ul>
+                        <div class="tesis-box">
+                            <small class="fw-bold text-uppercase mb-0" style="font-size: 0.7rem;">Tesis:</small>
+                            <p class="mb-0 small italic">"Título de la tesis de maestría..."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 docente-card p-3">
+                    <div class="text-center mb-3">
+                        <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 70px; height: 70px; font-size: 1.2rem;">👤</div>
+                        <h6 class="fw-bold mt-3 mb-0">Docente 3</h6>
+                        <div class="text-primary small fw-bold">Ayudante Graduado</div>
+                        <div class="text-muted small">Dedicación Simple</div>
+                    </div>
+                    <div class="border-top pt-2">
+                        <small class="fw-bold text-uppercase text-secondary" style="font-size: 0.7rem;">Titulaciones:</small>
+                        <ul class="ps-3 mb-2" style="font-size: 0.85rem;">
+                            <li>Ing. Químico</li>
+                        </ul>
+                        <div class="tesis-box">
+                            <small class="fw-bold text-uppercase mb-0" style="font-size: 0.7rem;">Tesis de Grado:</small>
+                            <p class="mb-0 small italic">"Título de la tesis de grado..."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 docente-card p-3">
+                    <div class="text-center mb-3">
+                        <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 70px; height: 70px; font-size: 1.2rem;">👤</div>
+                        <h6 class="fw-bold mt-3 mb-0">Docente 4</h6>
+                        <div class="text-primary small fw-bold">Ayudante Graduado</div>
+                        <div class="text-muted small">Dedicación Simple</div>
+                    </div>
+                    <div class="border-top pt-2">
+                        <small class="fw-bold text-uppercase text-secondary" style="font-size: 0.7rem;">Titulaciones:</small>
+                        <ul class="ps-3 mb-2" style="font-size: 0.85rem;">
+                            <li>Ing. Químico</li>
+                        </ul>
+                        <div class="tesis-box">
+                            <small class="fw-bold text-uppercase mb-0" style="font-size: 0.7rem;">Tesis de Grado:</small>
+                            <p class="mb-0 small italic">"Título de la tesis de grado..."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="seccion-titulo fw-bold">Ayudantes Estudiantiles</h3>
         <div class="row g-4 justify-content-center">
-    <div class="col-md-6 col-lg-4">
-        <div class="card h-100 docente-card p-4">
-            <div class="text-center mb-3">
-                <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 80px; height: 80px; font-size: 1.5rem;">👤</div>
-                <h5 class="fw-bold mt-3 mb-0">Nombre del Docente 1</h5>
-                <div class="text-primary small fw-bold">Profesor Titular</div>
-                <div class="text-muted mb-2" style="font-size: 0.8rem;">Dedicación Exclusiva</div>
+            <div class="col-md-5 col-lg-4">
+                <div class="card h-100 docente-card p-3 border-start border-info border-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center text-secondary border shadow-sm" style="width: 50px; height: 50px; flex-shrink: 0;">🎓</div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold mb-0">Nombre Ayudante 1</h6>
+                            <div class="text-info small fw-bold">Ayudante Estudiantil</div>
+                            <small class="text-muted">Estudiante de Ing. Química</small>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="border-top pt-3">
-                <h6 class="fw-bold small text-uppercase text-secondary">Titulaciones:</h6>
-                <ul class="ps-3 mb-3" style="font-size: 0.9rem;">
-                    <li>Ingeniero Químico</li>
-                    <li>Doctor en Ingeniería</li>
-                </ul>
 
-                <div class="tesis-box">
-                    <h6 class="fw-bold small text-uppercase mb-1">Tesis:</h6>
-                    <p class="mb-0 italic">"Optimización de sistemas multiobjetivo en la industria petroquímica".</p>
+            <div class="col-md-5 col-lg-4">
+                <div class="card h-100 docente-card p-3 border-start border-info border-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center text-secondary border shadow-sm" style="width: 50px; height: 50px; flex-shrink: 0;">🎓</div>
+                        <div class="ms-3">
+                            <h6 class="fw-bold mb-0">Nombre Ayudante 2</h6>
+                            <div class="text-info small fw-bold">Ayudante Estudiantil</div>
+                            <small class="text-muted">Estudiante de Ing. Química</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="col-md-6 col-lg-4">
-        <div class="card h-100 docente-card p-4">
-            <div class="text-center mb-3">
-                <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 80px; height: 80px; font-size: 1.5rem;">👤</div>
-                <h5 class="fw-bold mt-3 mb-0">Nombre del Docente 2</h5>
-                <div class="text-primary small fw-bold">Jefe de Trabajos Prácticos</div>
-                <div class="text-muted mb-2" style="font-size: 0.8rem;">Dedicación Semiexclusiva</div>
-            </div>
-            
-            <div class="border-top pt-3">
-                <h6 class="fw-bold small text-uppercase text-secondary">Titulaciones:</h6>
-                <ul class="ps-3 mb-3" style="font-size: 0.9rem;">
-                    <li>Ingeniero Químico</li>
-                    <li>Magíster en Procesos</li>
-                </ul>
-
-                <div class="tesis-box">
-                    <h6 class="fw-bold small text-uppercase mb-1">Tesis:</h6>
-                    <p class="mb-0 italic">"Modelado dinámico de evaporadores de múltiple efecto".</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-lg-4">
-        <div class="card h-100 docente-card p-4">
-            <div class="text-center mb-3">
-                <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 80px; height: 80px; font-size: 1.5rem;">👤</div>
-                <h5 class="fw-bold mt-3 mb-0">Nombre del Docente 3</h5>
-                <div class="text-primary small fw-bold">Ayudante Graduado</div>
-                <div class="text-muted mb-2" style="font-size: 0.8rem;">Dedicación Simple</div>
-            </div>
-            
-            <div class="border-top pt-3">
-                <h6 class="fw-bold small text-uppercase text-secondary">Titulaciones:</h6>
-                <ul class="ps-3 mb-3" style="font-size: 0.9rem;">
-                    <li>Ingeniero Químico</li>
-                </ul>
-
-                <div class="tesis-box">
-                    <h6 class="fw-bold small text-uppercase mb-1">Tesis de Grado:</h6>
-                    <p class="mb-0 italic">"Análisis de sensibilidad en reactores CSTR en serie".</p>
-                </div>
-            </div>
-        </div>
-    </div>
-            
-    <div class="col-md-6 col-lg-4">
-        <div class="card h-100 docente-card p-4">
-            <div class="text-center mb-3">
-                <div class="bg-secondary rounded-circle mx-auto d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 80px; height: 80px; font-size: 1.5rem;">👤</div>
-                <h5 class="fw-bold mt-3 mb-0">Nombre del Docente 3</h5>
-                <div class="text-primary small fw-bold">Ayudante Graduado</div>
-                <div class="text-muted mb-2" style="font-size: 0.8rem;">Dedicación Simple</div>
-            </div>
-            
-            <div class="border-top pt-3">
-                <h6 class="fw-bold small text-uppercase text-secondary">Titulaciones:</h6>
-                <ul class="ps-3 mb-3" style="font-size: 0.9rem;">
-                    <li>Ingeniero Químico</li>
-                </ul>
-
-                <div class="tesis-box">
-                    <h6 class="fw-bold small text-uppercase mb-1">Tesis de Grado:</h6>
-                    <p class="mb-0 italic">"Análisis de sensibilidad en reactores CSTR en serie".</p>
-                </div>
-            </div>
-        </div>
-    </div>   
-</div>
 
     <footer class="text-center mt-5">
         <div class="container">
