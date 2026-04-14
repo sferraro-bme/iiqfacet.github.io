@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herramientas de Cálculo - BME</title>
+    <title>Herramientas BME - Resolución</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
@@ -13,8 +13,10 @@
     <style>
         :root { --azul-ing: #003366; }
         .navbar { background-color: var(--azul-ing) !important; }
-        .card-tool { border-radius: 15px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .result-box { background: #212529; color: #39ff14; font-family: 'Courier New', Courier, monospace; padding: 15px; border-radius: 8px; min-height: 80px; }
+        .card-tool { border-radius: 15px; border: 2px solid #e9ecef; transition: 0.3s; }
+        .card-tool:hover { border-color: var(--azul-ing); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .console { background: #1a1a1a; color: #00ff00; font-family: 'Consolas', monospace; padding: 15px; border-radius: 8px; font-size: 0.9rem; min-height: 120px; overflow-y: auto; }
+        .instrucciones { font-size: 0.8rem; color: #666; margin-bottom: 10px; }
     </style>
 </head>
 <body class="bg-light">
@@ -28,56 +30,60 @@
                     <li class="nav-item"><a class="nav-link" href="equipo.html">Equipo Docente</a></li>
                     <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="alumnos.html">Alumnos</a></li>
-                    <li class="nav-item"><a class="nav-link active fw-bold" href="herramientas.html">Herramientas</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="herramientas.html">Herramientas</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="container my-5">
-        <h2 class="text-center mb-5 fw-bold">Laboratorio Virtual de Cálculo</h2>
+        <h2 class="text-center mb-5 fw-bold">Herramientas de Cálculo para Balances</h2>
 
-        <div class="row g-5">
+        <div class="row g-4">
             <div class="col-lg-6">
-                <div class="card card-tool p-4">
-                    <h4 class="fw-bold mb-3 text-primary">🧮 Solver de Balances ($Ax = B$)</h4>
-                    <p class="text-muted small">Resuelva sistemas de ecuaciones lineales para balances de masa multiespecie.</p>
+                <div class="card card-tool h-100 p-4">
+                    <h4 class="fw-bold text-primary">📊 Resolución de Sistemas $Ax = B$</h4>
+                    <p class="instrucciones">Ideal para balances de masa multiespecie sin reacción. <br> 
+                    <strong>Formato:</strong> Filas con espacios, separar filas con punto y coma (;)</p>
                     
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Matriz A (filas separadas por comas):</label>
-                        <input type="text" id="inputA" class="form-control" placeholder="1 1, 1 -1">
+                        <label class="form-label fw-bold">Matriz de Coeficientes (A):</label>
+                        <input type="text" id="inputA" class="form-control" placeholder="1 1 1; 0 2 5; 2 5 -1">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Vector B (resultados):</label>
-                        <input type="text" id="inputB" class="form-control" placeholder="10, 2">
+                        <label class="form-label fw-bold">Vector de Resultados (B):</label>
+                        <input type="text" id="inputB" class="form-control" placeholder="10; 20; 5">
                     </div>
-                    <button onclick="resolverSistema()" class="btn btn-primary w-100 fw-bold mb-3">Resolver con Math.js</button>
+                    <button onclick="resolverSist()" class="btn btn-primary w-100 fw-bold shadow-sm">Calcular Incógnitas</button>
                     
-                    <div id="resultadoAxB" class="result-box text-break">
-                        > Esperando datos...
+                    <div class="mt-4">
+                        <div id="resLineal" class="console">> Esperando datos...</div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="card card-tool p-4">
-                    <h4 class="fw-bold mb-3 text-danger">🔥 Propiedades del Vapor</h4>
-                    <p class="text-muted small">Cálculo de entalpía y entropía (Demo lógica Python).</p>
+                <div class="card card-tool h-100 p-4">
+                    <h4 class="fw-bold text-danger">💨 Propiedades de Vapor (Python)</h4>
+                    <p class="instrucciones">Estimación de entalpía y entropía para agua/vapor.</p>
                     
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Presión [bar]:</label>
-                        <input type="number" id="press" class="form-control" placeholder="1.0">
+                    <div class="row g-2 mb-3">
+                        <div class="col">
+                            <label class="form-label fw-bold">Presión (bar):</label>
+                            <input type="number" id="p_in" class="form-control" value="1.013">
+                        </div>
+                        <div class="col">
+                            <label class="form-label fw-bold">Temp (°C):</label>
+                            <input type="number" id="t_in" class="form-control" value="100">
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Temperatura [°C]:</label>
-                        <input type="number" id="temp" class="form-control" placeholder="100">
-                    </div>
-                    <button py-click="calc_steam()" id="btn-steam" class="btn btn-danger w-100 fw-bold mb-3">
-                        Calcular Propiedades (Python)
+                    
+                    <button py-click="solve_steam()" id="py-btn" class="btn btn-danger w-100 fw-bold shadow-sm">
+                        Ejecutar Lógica Python
                     </button>
                     
-                    <div id="out_steam" class="result-box">
-                        > Python cargando...
+                    <div class="mt-4">
+                        <div id="resSteam" class="console">> Cargando intérprete Python...</div>
                     </div>
                 </div>
             </div>
@@ -85,44 +91,51 @@
     </div>
 
     <script>
-        function resolverSistema() {
+        function resolverSist() {
             try {
-                const aVal = document.getElementById('inputA').value;
-                const bVal = document.getElementById('inputB').value;
-                
-                // Formatear A: de "1 1, 1 -1" a [[1,1],[1,-1]]
-                const A = aVal.split(',').map(row => row.trim().split(/\s+/).map(Number));
-                // Formatear B: de "10, 2" a [10, 2]
-                const B = bVal.split(',').map(Number);
-                
+                const rawA = document.getElementById('inputA').value;
+                const rawB = document.getElementById('inputB').value;
+
+                // Procesar A: "1 1; 2 2" -> [[1,1],[2,2]]
+                const A = rawA.split(';').map(row => row.trim().split(/\s+/).map(Number));
+                // Procesar B: "10; 20" -> [10, 20]
+                const B = rawB.split(';').map(Number);
+
                 const x = math.lusolve(A, B);
-                const flatX = [].concat(...x); // Aplana el resultado
-                
-                let resTxt = "SOLUCIÓN:<br>";
-                flatX.forEach((val, i) => {
-                    resTxt += `x${i+1} = ${val.toFixed(4)}<br>`;
+                const sol = [].concat(...x);
+
+                let output = "RESULTADO DEL BALANCE:<br>-----------------------<br>";
+                sol.forEach((val, i) => {
+                    output += `Flujo/Incógnita x${i+1} = ${val.toFixed(4)}<br>`;
                 });
-                document.getElementById('resultadoAxB').innerHTML = resTxt;
-            } catch (err) {
-                document.getElementById('resultadoAxB').innerHTML = "ERROR: Revise el formato (ej: 1 1, 1 -1)";
+                document.getElementById('resLineal').innerHTML = output;
+            } catch (e) {
+                document.getElementById('resLineal').innerHTML = "<span class='text-danger'>ERROR: Formato incorrecto. Use espacios para columnas y ';' para filas.</span>";
             }
         }
     </script>
 
     <py-script>
-def calc_steam():
+def solve_steam():
     try:
-        p = float(Element("press").value)
-        t = float(Element("temp").value)
+        p = float(Element("p_in").value)
+        t = float(Element("t_in").value)
         
-        # Aquí podrías integrar la lógica de XSteam. 
-        # Por ahora, una aproximación de ejemplo:
-        h = 2501 + 1.8 * t # Aproximación simple para vapor
+        # Lógica simplificada (aquí se puede extender con iapws o scipy)
+        # Aproximación para h_vapor saturado cerca de 100°C
+        h = 2501 + 1.82 * t 
+        s = 6.0 + (t/100) # Solo ilustrativo
         
-        res = f"RESULTADOS ESTIMADOS:\nPresión: {p} bar\nTemp: {t} °C\nEntalpía aprox: {h:.2f} kJ/kg"
-        Element("out_steam").write(res)
-    except:
-        Element("out_steam").write("Error en los datos de entrada")
+        res = f"REPORTE TERMODINÁMICO:\n"
+        res += f"-----------------------\n"
+        res += f"Presión:   {p:.3f} bar\n"
+        res += f"Temp:      {t:.2f} °C\n"
+        res += f"Entalpía:  {h:.2f} kJ/kg\n"
+        res += f"Entropía:  {s:.4f} kJ/kg·K"
+        
+        Element("resSteam").write(res)
+    except Exception as e:
+        Element("resSteam").write("Error en el cálculo. Verifique los valores.")
     </py-script>
 
 </body>
