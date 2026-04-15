@@ -1,4 +1,96 @@
-<div class="col-md-6 mb-3">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sección Alumnos - Cátedra BME</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --azul-ing: #003366; }
+        .navbar { background-color: var(--azul-ing) !important; }
+        .section-title { border-bottom: 2px solid var(--azul-ing); padding-bottom: 10px; margin-bottom: 30px; }
+        .card-download { transition: all 0.2s; border-left: 5px solid var(--azul-ing); }
+        .card-download:hover { background-color: #f8f9fa; }
+        .fecha-examen { color: #dc3545; font-weight: bold; }
+        footer { border-top: 1px solid #dee2e6; padding: 25px 0; margin-top: 50px; background: white; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">BME - Ing. Química</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="equipo.html">Equipo Docente</a></li>
+                    <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios al Exterior</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="alumnos.html">Alumnos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="herramientas.html">Herramientas</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="section-title">📅 Cronograma y Fechas Importantes</h2>
+                <div class="table-responsive bg-white shadow-sm rounded">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Evento</th>
+                                <th>Fecha Estimada</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Inicio de Cursada</td>
+                                <td>Marzo 2024</td>
+                                <td><span class="badge bg-success">En curso</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Primer Parcial (BME)</td>
+                                <td class="fecha-examen">Mayo 2024</td>
+                                <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                            </tr>
+                            <tr>
+                                <td>Entrega de Proyecto Final</td>
+                                <td>Junio 2024</td>
+                                <td><span class="badge bg-secondary">A confirmar</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h2 class="section-title">📚 Material Didáctico</h2>
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                <div class="card card-download shadow-sm">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title mb-1">Unidad 1: Balances de Masa</h5>
+                            <p class="card-text small text-muted">Guía de TPs y Tablas de datos.</p>
+                        </div>
+                        <a href="alumnos/guia_unidad1.pdf" class="btn btn-outline-primary btn-sm">Descargar PDF</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
                 <div class="card card-download shadow-sm">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
@@ -9,7 +101,10 @@
                     </div>
                 </div>
             </div>
-        </div> </div> <footer class="text-center mt-5">
+        </div>
+    </div>
+
+    <footer class="text-center mt-5">
         <div class="container">
             <p class="text-muted small">Cátedra Balances de Materia y Energía - Facultad de Ciencias Exactas y Tecnología - Universidad Nacional de Tucumán</p>
         </div>
